@@ -28,9 +28,7 @@ pipeline{
         stage('Deploy Docker Image') {
             steps {
                 script {
-                 docker.withRegistry( '', registryCredential) {
-                    sh 'docker login -u subhankar720 -p ${dockerhubpwd}'
-                 }  
+                 docker.withRegistry( '', registryCredential)  
                  sh 'docker push subhankar720/docker_jenkins'
                 }
             }
