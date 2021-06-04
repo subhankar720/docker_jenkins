@@ -1,5 +1,5 @@
 pipeline{
-    envirnoment {
+    environment {
 
         registry = "subhankar720/docker_jenkins"
 
