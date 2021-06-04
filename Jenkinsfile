@@ -29,7 +29,7 @@ pipeline{
             steps {
                 script {
                  docker.withRegistry( '', registryCredential)  
-                 sh 'docker push subhankar720/docker_jenkins'
+                 sh 'docker push subhankar720/my-app-1.0:latest'
                 }
             }
         }
