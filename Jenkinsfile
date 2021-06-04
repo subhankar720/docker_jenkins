@@ -1,4 +1,10 @@
 pipeline{
+    envirnoment {
+
+        registry = "subhankar720/docker_jenkins"
+
+        registryCredential = 'subhankar720'
+    }
     agent any
     tools {
         maven 'MAVEN'
@@ -19,7 +25,16 @@ pipeline{
                 }
             }
         }
-        
+        stage('Deploy Docker Image') {
+            steps {
+                script {
+                 withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
+                    sh 'docker login -u devopshint -p ${dockerhubpwd}'
+                 }  
+                 sh 'docker push devopshint/docker_jenkins'
+                }
+            }
+        }
     }
     
 }
