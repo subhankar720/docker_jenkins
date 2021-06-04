@@ -29,9 +29,9 @@ pipeline{
             steps {
                 script {
                  withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
-                    sh 'docker login -u devopshint -p ${dockerhubpwd}'
+                    sh 'docker login -u subhankar720 -p ${dockerhubpwd}'
                  }  
-                 sh 'docker push devopshint/docker_jenkins'
+                 sh 'docker push subhankar720/docker_jenkins'
                 }
             }
         }
