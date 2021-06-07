@@ -1,10 +1,4 @@
 pipeline{
-    environment {
-
-        registry = "subhankar720/docker_jenkins"
-
-        registryCredential = 'subhankar720'
-    }
     agent any
     tools {
         maven 'MAVEN'
@@ -28,10 +22,9 @@ pipeline{
         stage('Deploy Docker Image') {
             steps {
                 script {
-                 withCredentials([string(credentialsId: 'docker_password', variable: 'docker_password')]) {
-                     docker login -u subhankar720 -p $docker_password
-                 } 
-                 sh 'docker push subhankar720/docker_jenkins:latest'
+                 docker login -u subhankar720 -p Mini@2000
+                     sh 'docker push subhankar720/docker_jenkins:latest' 
+                 
                 }
             }
         }
