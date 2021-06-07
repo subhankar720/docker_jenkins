@@ -22,7 +22,7 @@ pipeline{
         stage('Deploy Docker Image') {
             steps {
                 script {
-                 docker login -u subhankar720 -p Mini@2000
+                 docker login -u subhankar720 -p 'Mini@2000'
                      sh 'docker push subhankar720/docker_jenkins:latest' 
                  
                 }
