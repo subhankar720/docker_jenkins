@@ -21,15 +21,17 @@ pipeline{
         stage('Build Docker Image') {
             steps {
                 script {
-                  sh 'docker build -t subhankar720/my-app-1.0:latest .'
+                  sh 'docker build -t subhankar720/docker_jenkins:latest .'
                 }
             }
         }
         stage('Deploy Docker Image') {
             steps {
                 script {
-                 docker.withRegistry( '', registryCredential)  
-                 sh 'docker push subhankar720/my-app-1.0:latest'
+                 withCredentials([string(credentialsId: 'docker_password', variable: 'docker_password')]) {
+                     docker login -u subhankar720 -p $docker_password
+                 } 
+                 sh 'docker push subhankar720/docker_jenkins:latest'
                 }
             }
         }
