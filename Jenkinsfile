@@ -15,7 +15,7 @@ pipeline{
         stage('Build Docker Image') {
             steps {
                 script {
-                  docker build -t subhankar720/docker_jenkins:latest .
+                  sh 'docker build -t subhankar720/docker_jenkins:latest .'
                 }
             }
         }
@@ -23,8 +23,8 @@ pipeline{
             steps {
                 script {
                  withCredentials([string(credentialsId: 'docker_password', variable: 'docker_password')]) {
-                     docker login -u subhankar720 -p $docker_password
-                        docker push subhankar720/docker_jenkins:latest
+                     sh 'docker login -u subhankar720 -p $docker_password'
+                      sh 'docker push subhankar720/docker_jenkins:latest'
                  } 
                  
                 }
