@@ -98,7 +98,7 @@ pipeline{
                             -D sonar.host.url=http://15.206.88.103:9000/"""
         }
     }
-}
+ }
 }
         stage('Build Docker Image') {
             steps {
@@ -134,6 +134,7 @@ pipeline{
       
                     }
                 }
-            
+
     
+  }
 }
