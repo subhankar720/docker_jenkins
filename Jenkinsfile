@@ -80,6 +80,26 @@ pipeline{
             }
 
         }
+        stage('SonarQube Analysis') {
+            steps{
+                script{
+                    def scannerHome = tool "SonarQube";
+                        withSonarQubeEnv('SonarQube') {
+                        sh """/var/lib/jenkins/tools/hudson.plugins.sonar.SonarRunnerInstallation/SonarQube/bin/sonar-scanner \
+                            -D sonar.projectVersion=1.0-SNAPSHOT \
+                            -D sonar.login=admin \
+                            -D sonar.password=admin \
+                            -D sonar.projectBaseDir=/var/lib/jenkins/workspace/complete-pipeline-project \
+                            -D sonar.projectKey=my-app \
+                            -D sonar.sourceEncoding=UTF-8 \
+                            -D sonar.language=java \
+                            -D sonar.sources=src/main \
+                            -D sonar.tests=src/test \
+                            -D sonar.host.url=http://15.206.88.103:9000/"""
+        }
+    }
+}
+}
         stage('Build Docker Image') {
             steps {
                 script {
